@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+    {% set mensagens = get_flashed_messages() %}
+    {% if mensagens %}
+        {% for msg in mensagens %}
+            {{msg}}
+        {% endfor %}
+    {% endif %}
+
+    <a href="/reserve/add">+ Adicionar</a>
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th>Serviço</th>
+            <th>Edita</th>
+            <th>Remove</th>
+        </tr>
+        {% for reserva in dados %}
+        <tr>
+            <td>{{reserve.data}}</td>
+            <td>{{reserve.cliente}}</td>
+            <td>{{reserve.servico}}</td>
+            <td>
+                <a href="/reserve/edita/{{reserve.id}}">editar</a>
+            </td>
+            <td>
+                <a href="/reserve/remove/{{reserve.id}}">remover</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

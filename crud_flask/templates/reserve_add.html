@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+    {% set mensagens = get_flashed_messages() %}
+    {% if mensagens %}
+        {% for msg in mensagens %}
+            {{msg}}
+        {% endfor %}
+    {% endif %}
+            <form action="/reserve/save" method="post">
+                <label for="date">Data: </label>
+                <input type="date" name="date" id="date">
+                <label for="cliente">Cliente</label>
+                <input type="text" name="cliente" id="cliente">
+                <label for="servico">Serviço: </label>
+                <input type="text" name="servico" id="servico">
+                <button type="submit">Salvar</button>
+            </form>
+
+{% endblock %}
