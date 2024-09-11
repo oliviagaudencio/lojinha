@@ -9,25 +9,25 @@
         {% endfor %}
     {% endif %}
 
-    <a href="/reserve/add">+ Adicionar</a>
+    <a href="/vendas/add">+ Adicionar</a>
     <table>
         <tr>
             <th>Data</th>
-            <th>Cliente</th>
-            <th>Serviço</th>
-            <th>Edita</th>
+            <th>Valor</th>
+            <th>Vendedor</th>
+            <th>Editar</th>
             <th>Remove</th>
         </tr>
-        {% for reserve in dados %}
+        {% for vendas in dados %}
         <tr>
-            <td>{{reserve.data}}</td>
-            <td>{{reserve.cliente}}</td>
-            <td>{{reserve.servico}}</td>
+            <td>{{vendas.data}}</td>
+            <td>{{vendas.valor}}</td>
+            <td>{{vendas.vendedor}}</td>
             <td>
-                <a href="/reserve/edita/{{reserve.id}}">editar</a>
+                <a href="/vendas/editar/{{vendas.id}}">editar</a>
             </td>
             <td>
-                <a href="/reserve/remove/{{reserve.id}}">remover</a>
+                <a href="/vendas/remove/{{vendas.id}}">remover</a>
             </td>
         </tr>
         {% endfor %}
