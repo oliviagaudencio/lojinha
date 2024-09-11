@@ -10,12 +10,12 @@
     {% endif %}
             <form action="/reserve/edita/save" method="post">
                 <input type="hidden" name="id" value="{{dados.id}}">
-                <label for="date">Data: </label>
-                <input type="date" name="date" id="date"  />
-                <label for="nome">Nome: </label>
-                <input type="text" name="nome" id="nome" value={{dados.nome}}>
-                <label for="idade">Idade: </label>
-                <input type="number" name="idade" id="idade" value={{dados.idade}}>
+                <label for="data">Data: </label>
+                <input type="date" name="data" id="data" value="{{dados.data}}"/>
+                <label for="cliente">Cliente: </label>
+                <input type="text" name="cliente" id="cliente" value="{{dados.cliente}}">
+                <label for="servico">Servico: </label>
+                <input type="text" name="servico" id="servico" value="{{dados.servico}}">
                 <button type="submit">Salvar</button>
             </form>
 

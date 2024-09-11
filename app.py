@@ -15,8 +15,8 @@ from flask_migrate import Migrate
 from models import Reserve
 app.config['SECRET_KEY'] = ['2c1685c157fe2450fda443a0753bb69f']
 
-# drive://reserva:senha@servidor/banco_de_dados
-conexao = "mysql+pymysql://alunos:cefetmg@127.0.0.1/flaskg2"
+# drive://reserve:senha@servidor/banco_de_dados
+conexao = "mysql+pymysql://alunos:cefetmg@127.0.0.1/crud_flask"
 app.config['SQLALCHEMY_DATABASE_URI'] = conexao
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 
@@ -34,13 +34,13 @@ def dados():
     return render_template('dados.html', dados=dados)
 
 @app.route('/reserve')
-def reserva():
+def reserve():
     u = Reserve.query.all()
     print(u)
     return render_template('reserve_lista.html', dados=u)
 
 @app.route('/reserve/add')
-def reserva_add():
+def reserve_add():
     return render_template("reserve_add.html")
 
 @app.route('/reserve/save', methods=['POST'])
@@ -71,27 +71,27 @@ def reserve_remove(id):
         return redirect('/reserve')
     
 @app.route('/reserve/edita/<int:id>')
-def reserva_edita(id):
+def reserve_edita(id):
     reserve = Reserve.query.get(id)
-    return render_template("reserva_edita.html", dados = reserva)
+    return render_template("reserve_edita.html", dados = reserve)
 
-@app.route('/reserva/edita/save', methods=['POST'])
-def reserva_edita_save():
-    nome = request.form.get('nome')
-    email = request.form.get('email')
-    idade = request.form.get('idade')
+@app.route('/reserve/edita/save', methods=['POST'])
+def reserve_edita_save():
+    data = request.form.get('data')
+    cliente = request.form.get('cliente')
+    servico = request.form.get('servico')
     id = request.form.get('id')
-    if id and nome and email and idade:
-        reserva = reserva.query.get(id)
-        reserva.nome = nome
-        reserva.email = email
-        reserva.idade = idade
+    if id and data and cliente and servico:
+        reserve = Reserve.query.get(id)
+        reserve.data = data
+        reserve.cliente = cliente
+        reserve.servico = servico
         db.session.commit()
         flash('Dados atualizados com sucesso!')
-        return redirect('/reserva')
+        return redirect('/reserve')
     else:
         flash('Faltando dados!!')
-        return redirect('/reserva')
+        return redirect('/reserve')
 
 if __name__ == '__main__':
     app.run()
